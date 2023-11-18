@@ -1,19 +1,47 @@
 import { css } from "styled-components";
 
 export const buttonStylesMixin = css`
+	cursor: pointer;
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
-	width: 230px;
-	height: 75px;
-	padding: 1.5rem;
-	background-color: ${({ theme }) => theme.palette.yellow};
 	color: ${({ theme }) => theme.palette.black};
 	border-radius: 50px;
 	font-weight: bold;
 
-	:nth-child(2) {
-		transform: scale(1.5);
+	&.primary {
+		background-color: ${({ theme }) => theme.palette.blue[3]};
+	}
+
+	&.secondary {
+		background-color: ${({ theme }) => theme.palette.blue[4]};
+	}
+
+	&.ghost > * {
+		font-weight: lighter;
+		color: ${({ theme }) => theme.palette.yellow};
+	}
+
+	&.big {
+		width: 230px;
+		height: 75px;
+		padding: 1.5rem;
+	}
+
+	&.regular {
+		width: 130px;
+		height: 20px;
+		padding: 1rem;
+	}
+
+	&.small {
+		width: 80px;
+		height: 20px;
+		padding: 1rem;
+	}
+
+	&.noPadding {
+		padding: 0;
 	}
 
 	button {
@@ -23,9 +51,8 @@ export const buttonStylesMixin = css`
 		font-size: 1.1rem;
 	}
 
-	&.small {
-		width: 130px;
-		height: 20px;
-		padding: 1rem;
+	a {
+		text-decoration: none;
+		color: ${({ theme }) => theme.palette.black};
 	}
 `;
