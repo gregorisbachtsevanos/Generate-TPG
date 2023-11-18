@@ -5,6 +5,7 @@ export const StyledImageContainer = styled.div`
 	top: 45%;
 	left: 70%;
 	transform: translate(-50%, -50%);
+	z-index: 0;
 `;
 
 export const StyledPageContainer = styled.div`
@@ -12,6 +13,10 @@ export const StyledPageContainer = styled.div`
 	flex-direction: column;
 	justify-content: space-evenly;
 	height: calc(100vh - 50px);
+
+	.title {
+		color: ${({ theme }) => theme.palette.white};
+	}
 
 	.btn {
 		height: 40%;
@@ -25,6 +30,7 @@ export const StyledPageContainer = styled.div`
 	}
 
 	.caption {
+		color: ${({ theme }) => theme.palette.white};
 		display: flex;
 		word-break: break-word;
 		overflow: hidden;
