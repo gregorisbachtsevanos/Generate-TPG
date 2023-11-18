@@ -2,12 +2,33 @@ import styled from "styled-components";
 
 export const StyledChatContainer = styled.div`
 	display: flex;
-	.tabs-container {
-		padding-top: 2rem;
+
+	.chat-body {
 		width: 100%;
-		height: 5%;
 		display: flex;
-		justify-content: center;
-		gap: 20px;
+		flex-direction: column;
+		height: 100vh;
+		justify-content: space-between;
+		align-items: center;
+		padding: 2rem;
+
+		.tabs-container {
+			padding-top: 2rem;
+			height: 5%;
+			display: flex;
+			justify-content: center;
+			gap: 25px;
+
+			a {
+				text-decoration: none;
+
+				* {
+					color: ${({ theme }) => theme.palette.yellow};
+				}
+				.active {
+					background-color: ${({ theme }) => theme.palette.blue[2]};
+				}
+			}
+		}
 	}
 `;
