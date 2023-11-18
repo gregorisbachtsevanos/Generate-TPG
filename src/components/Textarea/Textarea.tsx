@@ -1,18 +1,31 @@
+import { FC, useRef } from "react";
 import { StyledTextareaContainer } from "./Textarea.styled";
-import Button from "../Button";
-import SendIcon from "../../assets/icons/right-arrow.svg";
 
-const Textarea = () => {
+interface TextareaProps {
+	onChange: (value: string) => void;
+	error?: string;
+	value?: string;
+}
+
+const Textarea: FC<TextareaProps> = ({ onChange, error, value }) => {
+	const divRef = useRef<HTMLDivElement>(null);
+
+	const handleBlur = () => {
+		if (divRef.current) {
+			onChange(divRef.current.innerHTML);
+		}
+	};
+
 	return (
 		<StyledTextareaContainer>
 			<div
-				className="textarea"
+				className="caption"
 				contentEditable
-				placeholder="Leave a comment here"
-			></div>
-			<Button styleType="ghost" size="small" withOutPadding>
-				<img src={SendIcon} width={20} height={20} alt="submit" />
-			</Button>
+				onBlur={handleBlur}
+				ref={divRef}
+				dangerouslySetInnerHTML={{ __html: value || "" }}
+			/>
+			{error && <p className="error">{error}</p>}
 		</StyledTextareaContainer>
 	);
 };
