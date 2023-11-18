@@ -3,19 +3,16 @@ import styled, { DefaultTheme } from "styled-components";
 export const defaultTheme: DefaultTheme = {
 	palette: {
 		black: "#121416",
-		dark: {
-			1: "#182439",
-			2: "#162d44",
+		blue: {
+			1: "#020a18",
+			2: "#09111e",
+			3: "#3a68b8",
+			4: "#008afd",
 		},
-		violet: {
-			1: "#2e154d",
-			2: "#2a1646",
-		},
-		white: "#eaeaea",
-		success: "#36d666",
-		error: "#c93a3a",
+		white: "#f1f6ff",
+		success: "#49bc92",
+		error: "#cc4848",
 		yellow: "#d7ef41",
-		pink: "#f284ee",
 	},
 };
 
