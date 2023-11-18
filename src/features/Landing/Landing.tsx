@@ -1,4 +1,3 @@
-import AiLogo from "../../assets/images/ai-logo.png";
 import { StyledImageContainer, StyledPageContainer } from "./Landing.styled";
 import { Link } from "react-router-dom";
 import { Title, Title2Xl, TitleXl } from "../../assets/styles/theme";
