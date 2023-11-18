@@ -6,8 +6,10 @@ export const StyledNavbarContainer = styled.nav`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	position: relative;
+	z-index: 1;
 
 	div {
-		color: ${({ theme }) => theme.palette.yellow};
+		color: ${({ theme }) => theme.palette.blue[3]};
 	}
 `;

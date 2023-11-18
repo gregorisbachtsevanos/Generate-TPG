@@ -11,21 +11,16 @@ import {
 	StyledButtonTabContainer,
 } from "./Button.styled";
 import { LinkProps } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type BaseProps = {
 	children: ReactNode | ReactNode[];
 	className?: string;
-	styleType:
-		| "primary"
-		| "secondary"
-		| "ghost"
-		| "tertiary"
-		| "quaternary"
-		| "login"
-		| "bottom-sheet";
+	styleType: "primary" | "secondary" | "ghost" | "tertiary";
 	isLoading?: boolean;
 	loaderColor?: "black" | "white";
-	size?: "small" | "regular";
+	size?: "small" | "regular" | "big";
+	withOutPadding?: boolean;
 };
 
 type ButtonAsButton = BaseProps &
@@ -51,16 +46,16 @@ type ButtonProps = ButtonAsButton | ButtonAsExternal | ButtonAsLink;
 const Button: FC<ButtonProps> = (props) => {
 	const allClassNames = `${props.styleType ? props.styleType : ""} ${
 		props.size ? props.size : ""
-	} ${props.className ? props.className : ""}`;
-
-	console.log(allClassNames);
+	} ${props.className ? props.className : ""} ${
+		props.withOutPadding ? "noPadding" : ""
+	}`;
 
 	if (props.as === "Link") {
 		return (
 			<StyledButtonLinkContainer
 				className={`${allClassNames ? allClassNames : ""}`}
 			>
-				{props.children}
+				<Link to={props.to}>{props.children}</Link>
 			</StyledButtonLinkContainer>
 		);
 	} else if (props.as === "Tab") {

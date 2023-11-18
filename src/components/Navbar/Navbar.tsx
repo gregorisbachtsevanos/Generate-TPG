@@ -1,10 +1,19 @@
 import { StyledNavbarContainer } from "./Navbar.styled";
+import Button from "../Button";
 
 const Navbar = () => {
 	return (
 		<StyledNavbarContainer>
 			<div>Generate TPG</div>
-			<div>login</div>
+			<Button
+				styleType="ghost"
+				as="Link"
+				to="/sign-up"
+				size="small"
+				withOutPadding
+			>
+				login
+			</Button>
 		</StyledNavbarContainer>
 	);
 };
