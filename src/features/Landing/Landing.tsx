@@ -7,13 +7,16 @@ import Button from "../../components/Button";
 import MainLayout from "../../layout/MainLayout/MainLayout";
 import PlayIcon from "../../assets/icons/play.svg";
 import LineIcon from "../../assets/icons/line.svg";
+import Animation from "../../components/Animation/Animation";
 
 const Landing = () => {
 	return (
 		<MainLayout>
 			<Navbar />
 			<StyledImageContainer>
-				<img src={AiLogo} width={900} height={900} alt="ai-logo" />
+				<Animation />
+
+				{/* <img src={AiLogo} width={900} height={900} alt="ai-logo" /> */}
 			</StyledImageContainer>
 			<StyledPageContainer>
 				<div className="title">
@@ -22,11 +25,7 @@ const Landing = () => {
 				</div>
 				<div className="btn">
 					<Link to="/chat">
-						<Button
-							styleType="ghost"
-							size={"small"}
-							onClick={() => true}
-						>
+						<Button styleType="primary" size="big">
 							<img
 								src={PlayIcon}
 								width={20}
