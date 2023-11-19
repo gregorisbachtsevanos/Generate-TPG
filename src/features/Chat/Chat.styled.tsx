@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const StyledChatContainer = styled.div`
 	display: flex;
-
 	.chat-body {
 		width: 100%;
 		display: flex;

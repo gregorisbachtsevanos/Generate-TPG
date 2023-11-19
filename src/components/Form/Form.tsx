@@ -1,4 +1,4 @@
-import { useEffect, FC } from "react";
+import { useEffect, FC, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Textarea from "../Textarea/Textarea";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -11,18 +11,21 @@ import {
 	selectImageResolution,
 	selectNumberOfImages,
 } from "../../constants/constants";
+import { main } from "../../app/services/aiApi";
 
 interface FormProps {
 	formType: string | undefined | null;
 }
 
 type FormValues = {
-	caption: string;
-	numberOfImages: object;
+	prompt: string;
+	amount: object;
 	resolution: object;
 };
 
 const Form: FC<FormProps> = ({ formType }) => {
+	const [images, setImages] = useState<string[]>([]);
+
 	const {
 		handleSubmit,
 		control,
@@ -30,35 +33,44 @@ const Form: FC<FormProps> = ({ formType }) => {
 		formState: { errors },
 	} = useForm<FormValues>({
 		defaultValues: {
-			caption: "",
-			numberOfImages: selectNumberOfImages[0],
+			prompt: "",
+			amount: selectNumberOfImages[0],
 			resolution: selectImageResolution[0],
 		},
 		mode: "onBlur",
 		resolver: yupResolver(validationSchema),
 	});
-	console.log(formType);
+
 	useEffect(() => reset(), [reset, formType]);
 
 	const onSubmit = (data: object) => {
-		console.log(data);
+		main(data);
+		// try {
+		// 	setImages([]);
+		// 	const res = true;
+		// 	const urls = res.data.map((image: { url: string }) => image.url);
+		// 	setImages(urls);
+		// 	reset();
+		// } catch (error) {
+		// 	console.log(error);
+		// }
 	};
 
 	return (
 		<StyledFormContainer>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className={`${errors.caption?.message ? "error" : ""}`}
+				className={`${errors.prompt?.message ? "error" : ""}`}
 			>
 				<div className="caption-container">
 					<Controller
 						control={control}
-						name="caption"
+						name="prompt"
 						render={({ field: { onChange, value } }) => (
 							<Textarea
 								onChange={onChange}
 								value={value}
-								error={errors.caption?.message}
+								error={errors.prompt?.message}
 							/>
 						)}
 					/>
@@ -67,7 +79,7 @@ const Form: FC<FormProps> = ({ formType }) => {
 					<div className="select-container">
 						<Controller
 							control={control}
-							name="numberOfImages"
+							name="amount"
 							render={({ field: { onChange } }) => (
 								<Select
 									menuPlacement="top"
