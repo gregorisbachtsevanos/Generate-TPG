@@ -1,7 +1,6 @@
 import * as React from "react";
 import videojs from "video.js";
 
-// Styles
 import "video.js/dist/video-js.css";
 import { StyledVideoPlayerContainer } from "./VideoPlayer.styled";
 
