@@ -6,6 +6,7 @@ import { StyledChatContainer } from "./Chat.styled";
 import { useEffect, useMemo, useState } from "react";
 import Form from "../../components/Form";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
+import Card from "../../components/Card";
 
 const videoJsOptions = {
 	sources: [
@@ -17,6 +18,8 @@ const videoJsOptions = {
 };
 
 const Chat = () => {
+	const image =
+		"https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg?size=626&ext=jpg&ga=GA1.1.2116175301.1700524800&semt=sph";
 	const [searchParams] = useSearchParams();
 	const [formType, setFormType] = useState<string | null>("image");
 
@@ -59,11 +62,19 @@ const Chat = () => {
 							</Button>
 						</Link>
 					</div>
-					{formType === "video" ? (
-						<VideoPlayer options={videoJsOptions} />
-					) : (
-						"image"
-					)}
+					<div className="media-container">
+						{formType === "video" ? (
+							<VideoPlayer options={videoJsOptions} />
+						) : (
+							<div className="generated-images">
+								<Card url={image} />
+
+								<Card url={image} />
+								<Card url={image} />
+								<Card url={image} />
+							</div>
+						)}
+					</div>
 					{formType === "image" ? (
 						<Form formType={formType} />
 					) : (

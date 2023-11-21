@@ -11,7 +11,6 @@ import {
 	selectImageResolution,
 	selectNumberOfImages,
 } from "../../constants/constants";
-import { main } from "../../app/services/aiApi";
 
 interface FormProps {
 	formType: string | undefined | null;
@@ -75,7 +74,8 @@ const Form: FC<FormProps> = ({ formType }) => {
 						)}
 					/>
 				</div>
-				{formType === "image" && (
+				{/* TODO: remove false to render select to ui */}
+				{formType === "image" && false && (
 					<div className="select-container">
 						<Controller
 							control={control}

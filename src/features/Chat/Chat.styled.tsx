@@ -29,5 +29,19 @@ export const StyledChatContainer = styled.div`
 				}
 			}
 		}
+
+		.media-container {
+			width: 40%;
+
+			.generated-images {
+				width: 100%;
+				margin: auto;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 1rem;
+				flex-wrap: wrap;
+			}
+		}
 	}
 `;
