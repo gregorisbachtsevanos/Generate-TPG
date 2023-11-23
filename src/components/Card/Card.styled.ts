@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledCardContainer = styled.div`
 	background-color: ${({ theme }) => theme.palette.black};
-	/* max-width: 350px; */
+	μιν-width: 350px;
 	width: auto;
 	border-radius: 8px;
 	padding: 5px;
@@ -11,6 +11,6 @@ export const StyledCardContainer = styled.div`
 	justify-content: center;
 
 	img {
-		max-width: 300px;
+		max-width: 500px;
 	}
 `;

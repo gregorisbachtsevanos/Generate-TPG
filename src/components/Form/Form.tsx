@@ -11,6 +11,16 @@ import {
 	selectImageResolution,
 	selectNumberOfImages,
 } from "../../constants/constants";
+import VideoPlayer from "../VideoPlayer/VideoPlayer";
+import Card from "../Card";
+import { image, videoJsOptions } from "../../features/Chat/constants";
+import { generateImage } from "../../app/services/imageAi";
+import { generateVideo } from "../../app/services/videoAi";
+import Replicate from "replicate";
+import { config } from "../../config";
+const replicate = new Replicate({
+	auth: config.replicateKey,
+});
 
 interface FormProps {
 	formType: string | undefined | null;
@@ -23,7 +33,8 @@ type FormValues = {
 };
 
 const Form: FC<FormProps> = ({ formType }) => {
-	const [images, setImages] = useState<string[]>([]);
+	const [generatedImage, setGeneratedImage] = useState<null | string>(null);
+	const [generatedVideo, setGeneratedVideo] = useState<null | string>(null);
 
 	const {
 		handleSubmit,
@@ -42,8 +53,19 @@ const Form: FC<FormProps> = ({ formType }) => {
 
 	useEffect(() => reset(), [reset, formType]);
 
-	const onSubmit = (data: object) => {
-		main(data);
+	const onSubmit = async ({ prompt }: { prompt: string }) => {
+		console.log(prompt);
+		const res = await replicate.run(
+			"stability-ai/stable-diffusion:ac732df83cea7fff18b8472768c88ad041fa750ff7682a21affe81863cbe77e4",
+			{
+				input: {
+					prompt,
+				},
+			}
+		);
+		console.log(res);
+
+		// formType === "video" ? generateVideo(data) : generateImage(data);
 		// try {
 		// 	setImages([]);
 		// 	const res = true;
@@ -57,6 +79,15 @@ const Form: FC<FormProps> = ({ formType }) => {
 
 	return (
 		<StyledFormContainer>
+			<div className="media-container">
+				{formType === "video" ? (
+					<VideoPlayer options={videoJsOptions} />
+				) : (
+					<div className="generated-images">
+						<Card url={image} />
+					</div>
+				)}
+			</div>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className={`${errors.prompt?.message ? "error" : ""}`}
