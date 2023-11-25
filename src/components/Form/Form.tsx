@@ -14,10 +14,13 @@ import {
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import Card from "../Card";
 import { image, videoJsOptions } from "../../features/Chat/constants";
-import { generateImage } from "../../app/services/imageAi";
-import { generateVideo } from "../../app/services/videoAi";
 import Replicate from "replicate";
 import { config } from "../../config";
+import {
+	useGenerateImageQuery,
+	useGenerateVideoQuery,
+	useGetProjectsQuery,
+} from "../../app/services/generateAi";
 const replicate = new Replicate({
 	auth: config.replicateKey,
 });
@@ -33,8 +36,11 @@ type FormValues = {
 };
 
 const Form: FC<FormProps> = ({ formType }) => {
-	const [generatedImage, setGeneratedImage] = useState<null | string>(null);
-	const [generatedVideo, setGeneratedVideo] = useState<null | string>(null);
+	// const [generatedImage, setGeneratedImage] = useState<null | string>(null);
+	// const [generatedVideo, setGeneratedVideo] = useState<null | string>(null);
+
+	const [generateImage, { isSuccess: imageIsSuccess, data: imageData }] =
+		useGenerateImageQuery();
 
 	const {
 		handleSubmit,
@@ -55,28 +61,10 @@ const Form: FC<FormProps> = ({ formType }) => {
 
 	const onSubmit = async ({ prompt }: { prompt: string }) => {
 		console.log(prompt);
-		const res = await replicate.run(
-			"stability-ai/stable-diffusion:ac732df83cea7fff18b8472768c88ad041fa750ff7682a21affe81863cbe77e4",
-			{
-				input: {
-					prompt,
-				},
-			}
-		);
-		console.log(res);
-
-		// formType === "video" ? generateVideo(data) : generateImage(data);
-		// try {
-		// 	setImages([]);
-		// 	const res = true;
-		// 	const urls = res.data.map((image: { url: string }) => image.url);
-		// 	setImages(urls);
-		// 	reset();
-		// } catch (error) {
-		// 	console.log(error);
-		// }
+		generateImage({ prompt } as { prompt: string });
 	};
-
+	console.log(imageIsSuccess);
+	console.log(imageData);
 	return (
 		<StyledFormContainer>
 			<div className="media-container">
