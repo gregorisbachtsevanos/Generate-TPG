@@ -1,4 +1,4 @@
-import { useEffect, FC, useState } from "react";
+import { useEffect, FC } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Textarea from "../Textarea/Textarea";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,24 +6,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import SubmitIcon from "../../assets/icons/right-arrow.svg";
 import { StyledFormContainer } from "./Form.styled";
 import { validationSchema } from "./validationSchema";
-import Select from "react-select";
-import {
-	selectImageResolution,
-	selectNumberOfImages,
-} from "../../constants/constants";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import Card from "../Card";
 import { image, videoJsOptions } from "../../features/Chat/constants";
-import Replicate from "replicate";
-import { config } from "../../config";
-import {
-	useGenerateImageQuery,
-	useGenerateVideoQuery,
-	useGetProjectsQuery,
-} from "../../app/services/generateAi";
-const replicate = new Replicate({
-	auth: config.replicateKey,
-});
+// import Replicate from "replicate";
+// import { config } from "../../config";
+import { useGenerateImageQuery } from "../../app/services/generateAi";
+// const replicate = new Replicate({
+// 	auth: config.replicateKey,
+// });
 
 interface FormProps {
 	formType: string | undefined | null;
@@ -31,16 +22,13 @@ interface FormProps {
 
 type FormValues = {
 	prompt: string;
-	amount: object;
-	resolution: object;
 };
 
 const Form: FC<FormProps> = ({ formType }) => {
 	// const [generatedImage, setGeneratedImage] = useState<null | string>(null);
 	// const [generatedVideo, setGeneratedVideo] = useState<null | string>(null);
 
-	const [generateImage, { isSuccess: imageIsSuccess, data: imageData }] =
-		useGenerateImageQuery();
+	const [generateImage, { isSuccess }] = useGenerateImageQuery();
 
 	const {
 		handleSubmit,
@@ -50,8 +38,6 @@ const Form: FC<FormProps> = ({ formType }) => {
 	} = useForm<FormValues>({
 		defaultValues: {
 			prompt: "",
-			amount: selectNumberOfImages[0],
-			resolution: selectImageResolution[0],
 		},
 		mode: "onBlur",
 		resolver: yupResolver(validationSchema),
@@ -59,12 +45,11 @@ const Form: FC<FormProps> = ({ formType }) => {
 
 	useEffect(() => reset(), [reset, formType]);
 
-	const onSubmit = async ({ prompt }: { prompt: string }) => {
+	const onSubmit = ({ prompt }: FormValues) => {
 		console.log(prompt);
-		generateImage({ prompt } as { prompt: string });
+		generateImage(prompt);
 	};
-	console.log(imageIsSuccess);
-	console.log(imageData);
+
 	return (
 		<StyledFormContainer>
 			<div className="media-container">
@@ -94,7 +79,7 @@ const Form: FC<FormProps> = ({ formType }) => {
 					/>
 				</div>
 				{/* TODO: remove false to render select to ui */}
-				{formType === "image" && false && (
+				{/* {formType === "image" && false && (
 					<div className="select-container">
 						<Controller
 							control={control}
@@ -121,7 +106,7 @@ const Form: FC<FormProps> = ({ formType }) => {
 							)}
 						/>
 					</div>
-				)}
+				)} */}
 				<div className="btn-container">
 					<button className={` `}>
 						<img

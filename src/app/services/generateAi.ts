@@ -1,6 +1,6 @@
 import { api } from "./api/api";
 
-type generateAi = {
+type generateAiProps = {
 	type: [];
 	items: {
 		type: string;
@@ -11,16 +11,14 @@ type generateAi = {
 
 export const generateApi = api.injectEndpoints({
 	endpoints: (build) => ({
-		generateImage: build.query<generateAi, void>({
-			query: ({ prompt }: { prompt: string }) => ({
+		generateImage: build.query<generateAiProps, string>({
+			query: (prompt) => ({
 				url: `http://localhost:3001/image-generator?prompt=${prompt}`,
-				method: "GET",
 			}),
 		}),
-		generateVideo: build.query<generateAi, void>({
-			query: ({ prompt }: { prompt: string }) => ({
+		generateVideo: build.query<generateAiProps, string>({
+			query: (prompt) => ({
 				url: `http://localhost:3001/video-generator?prompt=${prompt}`,
-				method: "GET",
 			}),
 		}),
 	}),

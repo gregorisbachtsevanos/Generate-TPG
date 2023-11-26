@@ -1,9 +1,9 @@
 import express from "express";
-import Replicate from "replicate";
+// import Replicate from "replicate";
 
-const replicate = new Replicate({
-	auth: 'r8_LpIfovNTW9GoBwkadO0oDI1czAsXClV3QmkXP',
-});
+// const replicate = new Replicate({
+// 	auth: 'r8_LpIfovNTW9GoBwkadO0oDI1czAsXClV3QmkXP',
+// });
 
 const app = express();
 const port = 3001;

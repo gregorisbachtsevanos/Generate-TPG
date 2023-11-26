@@ -14,7 +14,7 @@ export const api = createApi({
 	 * Otherwise, a single API definition should be used in order to support tag invalidation,
 	 * among other features
 	 */
-	reducerPath: "splitApi",
+	reducerPath: "generateApi",
 	/**
 	 * A bare bones base query would just be `baseQuery: fetchBaseQuery({ baseUrl: '/' })`
 	 */
