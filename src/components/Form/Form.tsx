@@ -1,4 +1,4 @@
-import { useEffect, FC } from "react";
+import { useEffect, FC, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Textarea from "../Textarea/Textarea";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,9 +9,9 @@ import { validationSchema } from "./validationSchema";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import Card from "../Card";
 import { image, videoJsOptions } from "../../features/Chat/constants";
+import { useGenerateImageQuery } from "../../app/services/generateAi";
 // import Replicate from "replicate";
 // import { config } from "../../config";
-import { useGenerateImageQuery } from "../../app/services/generateAi";
 // const replicate = new Replicate({
 // 	auth: config.replicateKey,
 // });
@@ -26,9 +26,11 @@ type FormValues = {
 
 const Form: FC<FormProps> = ({ formType }) => {
 	// const [generatedImage, setGeneratedImage] = useState<null | string>(null);
-	// const [generatedVideo, setGeneratedVideo] = useState<null | string>(null);
+	const [prompt, setPrompt] = useState<null | string>(null);
 
-	const [generateImage, { isSuccess }] = useGenerateImageQuery();
+	const { data, error, isLoading } = useGenerateImageQuery(prompt ?? "", {
+		skip: Boolean(!prompt),
+	});
 
 	const {
 		handleSubmit,
@@ -47,7 +49,8 @@ const Form: FC<FormProps> = ({ formType }) => {
 
 	const onSubmit = ({ prompt }: FormValues) => {
 		console.log(prompt);
-		generateImage(prompt);
+		setPrompt(prompt);
+		// generateImage(prompt);
 	};
 
 	return (

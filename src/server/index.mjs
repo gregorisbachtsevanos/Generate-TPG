@@ -1,4 +1,6 @@
 import express from "express";
+import cors from 'cors';
+
 // import Replicate from "replicate";
 
 // const replicate = new Replicate({
@@ -7,8 +9,10 @@ import express from "express";
 
 const app = express();
 const port = 3001;
+app.use(cors());
 
-app.get("/video-generate", async (req, res) => {
+app.get("/video-generator", async (req, res) => {
+	console.log(req)
 	const response = { data: '' }
 	// const response = await replicate.run(
 	// 	"stability-ai/stable-diffusion:ac732df83cea7fff18b8472768c88ad041fa750ff7682a21affe81863cbe77e4",
@@ -21,8 +25,9 @@ app.get("/video-generate", async (req, res) => {
 	res.send({ message: "Image generator", response });
 });
 
-app.get("/image-generate", async (req, res) => {
-	const response = { data: '' }
+app.get("/image-generator", async (req, res) => {
+	console.log(req.query)
+	const { query } = req
 
 	// const response = await replicate.run(
 	// 	"anotherjesse/zeroscope-v2-xl:9f747673945c62801b13b84701c783929c0ee784e4748ec062204894dda1a351",
@@ -32,7 +37,7 @@ app.get("/image-generate", async (req, res) => {
 	// 		},
 	// 	}
 	// );
-	res.send({ message: "Video generator", response });
+	res.send({ message: "Video generator", query });
 });
 
 app.listen(port, () => {
