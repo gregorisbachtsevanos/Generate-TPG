@@ -2,6 +2,16 @@ import styled, { DefaultTheme } from "styled-components";
 
 export const defaultTheme: DefaultTheme = {
 	palette: {
+		// black: "#020A18",
+		// blue: {
+		// 	1: "#00384C",
+		// 	2: "#006A74",
+		// },
+		// green: {
+		// 	1: "#009F81",
+		// 	2: "#82D079",
+		// },
+		// yellow: "#F9F871",
 		black: "#121416",
 		blue: {
 			1: "#020a18",
