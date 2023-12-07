@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledCardContainer = styled.div`
 	background-color: ${({ theme }) => theme.palette.black};
-	μιν-width: 350px;
+	margin: auto;
 	width: auto;
 	border-radius: 8px;
 	padding: 5px;

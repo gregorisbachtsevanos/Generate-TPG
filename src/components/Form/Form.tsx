@@ -9,7 +9,10 @@ import { validationSchema } from "./validationSchema";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import Card from "../Card";
 import { image, videoJsOptions } from "../../features/Chat/constants";
-import { useGenerateImageQuery } from "../../app/services/generateAi";
+import {
+	useGenerateImageQuery,
+	useGenerateVideoQuery,
+} from "../../app/services/generateAi";
 // import Replicate from "replicate";
 // import { config } from "../../config";
 // const replicate = new Replicate({
@@ -28,9 +31,14 @@ const Form: FC<FormProps> = ({ formType }) => {
 	// const [generatedImage, setGeneratedImage] = useState<null | string>(null);
 	const [prompt, setPrompt] = useState<null | string>(null);
 
-	const { data, error, isLoading } = useGenerateImageQuery(prompt ?? "", {
-		skip: Boolean(!prompt),
-	});
+	const { data: generatedImage, isLoading: isGeneratedImageLoading } =
+		useGenerateImageQuery(prompt ?? "", {
+			skip: Boolean(!prompt),
+		});
+	const { data: generatedVideo, isLoading: isGeneratedVideoLoading } =
+		useGenerateVideoQuery(prompt ?? "", {
+			skip: Boolean(!prompt),
+		});
 
 	const {
 		handleSubmit,
@@ -47,6 +55,7 @@ const Form: FC<FormProps> = ({ formType }) => {
 
 	useEffect(() => reset(), [reset, formType]);
 
+	console.log(generatedImage?.response[0]);
 	const onSubmit = ({ prompt }: FormValues) => {
 		console.log(prompt);
 		setPrompt(prompt);
@@ -55,15 +64,17 @@ const Form: FC<FormProps> = ({ formType }) => {
 
 	return (
 		<StyledFormContainer>
-			<div className="media-container">
-				{formType === "video" ? (
-					<VideoPlayer options={videoJsOptions} />
-				) : (
-					<div className="generated-images">
-						<Card url={image} />
-					</div>
-				)}
-			</div>
+			{isGeneratedImageLoading && (
+				<div className="media-container">
+					{formType === "video" ? (
+						<VideoPlayer options={videoJsOptions} />
+					) : (
+						<div className="generated-images">
+							<Card url={generatedImage?.response[0]} />
+						</div>
+					)}
+				</div>
+			)}
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className={`${errors.prompt?.message ? "error" : ""}`}

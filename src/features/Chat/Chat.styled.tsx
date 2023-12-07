@@ -32,6 +32,7 @@ export const StyledChatContainer = styled.div`
 
 		.media-container {
 			width: 60%;
+			margin: auto;
 
 			.generated-images {
 				width: 100%;
