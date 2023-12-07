@@ -22,7 +22,7 @@ export const StyledTextareaContainer = styled.div`
 
 	.error {
 		position: absolute;
-		bottom: -1%;
+		bottom: -0.5%;
 		color: ${({ theme }) => theme.palette.error};
 	}
 `;

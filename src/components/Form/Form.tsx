@@ -1,4 +1,4 @@
-import { useEffect, FC } from "react";
+import { useEffect, FC, useCallback } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Textarea from "../Textarea/Textarea";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -56,15 +56,21 @@ const Form: FC<FormProps> = ({ formType }) => {
 
 	useEffect(() => reset(), [reset, formType]);
 
-	const onSubmit = ({ prompt }: FormValues) => {
-		formType === "video" ? generateVideo(prompt) : generateImage(prompt);
-	};
+	// const onSubmit = ({ prompt }: FormValues) => {
+	// 	formType === "video" ? generateVideo(prompt) : generateImage(prompt);
+	// };
+
+	const onSubmit = useCallback(
+		({ prompt }: FormValues) =>
+			formType === "video"
+				? generateVideo(prompt)
+				: generateImage(prompt),
+		[formType, generateImage, generateVideo]
+	);
 
 	return (
 		<StyledFormContainer>
-			{(isGeneratedImageLoading || isGeneratedVideoLoading || true) && (
-				<Loader />
-			)}
+			{(isGeneratedImageLoading || isGeneratedVideoLoading) && <Loader />}
 			{(isGeneratedImageSuccess || isGeneratedVideoSuccess) && (
 				<div className="media-container">
 					{formType === "video" ? (

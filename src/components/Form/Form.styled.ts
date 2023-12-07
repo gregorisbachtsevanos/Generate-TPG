@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
 export const StyledFormContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 60vh;
+	gap: 25rem;
+	justify-content: flex-end;
 	form {
 		display: flex;
 		background-color: ${({ theme }) => theme.palette.blue[2]};
@@ -8,6 +14,8 @@ export const StyledFormContainer = styled.div`
 		padding: 1rem;
 
 		&.error {
+			font-size: 0.8rem;
+
 			border: 1px solid ${({ theme }) => theme.palette.error};
 		}
 

@@ -32,18 +32,27 @@ const thinker = keyframes`
 `;
 
 export const StyledLoaderContainer = styled.div`
-	display: inline-block;
-	position: relative;
-	width: 80px;
-	height: 80px;
-	div {
-		position: absolute;
-		border: 4px solid ${({ theme }) => theme.palette.blue[4]};
-		opacity: 1;
-		border-radius: 50%;
-		animation: ${thinker} 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+	.loader {
+		display: inline-block;
+		position: relative;
+		width: 80px;
+		height: 80px;
+
+		div {
+			position: absolute;
+			border: 4px solid ${({ theme }) => theme.palette.blue[4]};
+			opacity: 1;
+			border-radius: 50%;
+			animation: ${thinker} 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+		}
+		div:nth-child(2) {
+			animation-delay: -0.5s;
+		}
 	}
-	div:nth-child(2) {
-		animation-delay: -0.5s;
+
+	p {
+		font-size: 0.9rem;
+		font-style: italic;
+		color: ${({ theme }) => theme.palette.blue[3]};
 	}
 `;
