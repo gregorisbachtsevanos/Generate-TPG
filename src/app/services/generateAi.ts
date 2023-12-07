@@ -1,16 +1,8 @@
 import { api } from "./api/api";
 
 type generateAiResponseProps = {
-	type: [];
-	items: {
-		type: string;
-		format: string;
-	};
-	title: string;
-};
-
-type generateAiProps = {
-	prompt: string;
+	message: string;
+	response: string[];
 };
 
 export const generateApi = api.injectEndpoints({
@@ -24,4 +16,5 @@ export const generateApi = api.injectEndpoints({
 	}),
 });
 
-export const { useGenerateImageQuery, useGenerateVideoQuery } = generateApi;
+export const { useLazyGenerateImageQuery, useLazyGenerateVideoQuery } =
+	generateApi;

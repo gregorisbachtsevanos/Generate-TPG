@@ -1,4 +1,4 @@
-import { useEffect, FC, useState } from "react";
+import { useEffect, FC } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Textarea from "../Textarea/Textarea";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,16 +8,11 @@ import { StyledFormContainer } from "./Form.styled";
 import { validationSchema } from "./validationSchema";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import Card from "../Card";
-import { image, videoJsOptions } from "../../features/Chat/constants";
 import {
-	useGenerateImageQuery,
-	useGenerateVideoQuery,
+	useLazyGenerateImageQuery,
+	useLazyGenerateVideoQuery,
 } from "../../app/services/generateAi";
-// import Replicate from "replicate";
-// import { config } from "../../config";
-// const replicate = new Replicate({
-// 	auth: config.replicateKey,
-// });
+import Loader from "../Loader";
 
 interface FormProps {
 	formType: string | undefined | null;
@@ -28,17 +23,23 @@ type FormValues = {
 };
 
 const Form: FC<FormProps> = ({ formType }) => {
-	// const [generatedImage, setGeneratedImage] = useState<null | string>(null);
-	const [prompt, setPrompt] = useState<null | string>(null);
+	const [
+		generateImage,
+		{
+			data: generatedImage,
+			isLoading: isGeneratedImageLoading,
+			isSuccess: isGeneratedImageSuccess,
+		},
+	] = useLazyGenerateImageQuery();
 
-	const { data: generatedImage, isLoading: isGeneratedImageLoading } =
-		useGenerateImageQuery(prompt ?? "", {
-			skip: Boolean(!prompt),
-		});
-	const { data: generatedVideo, isLoading: isGeneratedVideoLoading } =
-		useGenerateVideoQuery(prompt ?? "", {
-			skip: Boolean(!prompt),
-		});
+	const [
+		generateVideo,
+		{
+			data: generatedVideo,
+			isLoading: isGeneratedVideoLoading,
+			isSuccess: isGeneratedVideoSuccess,
+		},
+	] = useLazyGenerateVideoQuery();
 
 	const {
 		handleSubmit,
@@ -55,19 +56,28 @@ const Form: FC<FormProps> = ({ formType }) => {
 
 	useEffect(() => reset(), [reset, formType]);
 
-	console.log(generatedImage?.response[0]);
 	const onSubmit = ({ prompt }: FormValues) => {
-		console.log(prompt);
-		setPrompt(prompt);
-		// generateImage(prompt);
+		formType === "video" ? generateVideo(prompt) : generateImage(prompt);
 	};
 
 	return (
 		<StyledFormContainer>
-			{isGeneratedImageLoading && (
+			{(isGeneratedImageLoading || isGeneratedVideoLoading || true) && (
+				<Loader />
+			)}
+			{(isGeneratedImageSuccess || isGeneratedVideoSuccess) && (
 				<div className="media-container">
 					{formType === "video" ? (
-						<VideoPlayer options={videoJsOptions} />
+						<VideoPlayer
+							options={{
+								sources: [
+									{
+										src: generatedVideo?.response[0],
+										type: "video/mp4",
+									},
+								],
+							}}
+						/>
 					) : (
 						<div className="generated-images">
 							<Card url={generatedImage?.response[0]} />

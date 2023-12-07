@@ -1,7 +1,7 @@
 export const videoJsOptions = {
 	sources: [
 		{
-			src: "//vjs.zencdn.net/v/oceans.mp4",
+			src: "https://replicate.delivery/pbxt/eFzPBY4e2imE0EEODVmBg1TDYMreBvJkQZHYxmTSwXU64efPC/output-0.mp4",
 			type: "video/mp4",
 		},
 	],
