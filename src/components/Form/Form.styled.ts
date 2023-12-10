@@ -7,6 +7,7 @@ export const StyledFormContainer = styled.div`
 	min-height: 60vh;
 	gap: 25rem;
 	justify-content: flex-end;
+
 	form {
 		display: flex;
 		background-color: ${({ theme }) => theme.palette.blue[2]};
