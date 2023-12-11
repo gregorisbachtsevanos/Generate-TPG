@@ -4,12 +4,16 @@ declare module "styled-components" {
 	export interface DefaultTheme {
 		palette: {
 			black: string;
-			white: string;
-			yellow: {
+			blue: {
 				1: string;
 				2: string;
 				3: string;
+				4: string;
 			};
+			white: string;
+			success: string;
+			error: string;
+			yellow: string;
 		};
 	}
 }

@@ -10,16 +10,16 @@ export const buttonStylesMixin = css`
 	font-weight: bold;
 
 	&.primary {
-		background-color: ${({ theme }) => theme.palette.black};
+		background-color: ${({ theme }) => theme.palette.blue[3]};
 	}
 
 	&.secondary {
-		background-color: ${({ theme }) => theme.palette.black};
+		background-color: ${({ theme }) => theme.palette.blue[4]};
 	}
 
 	&.ghost > * {
 		font-weight: lighter;
-		color: ${({ theme }) => theme.palette.yellow[1]};
+		color: ${({ theme }) => theme.palette.yellow};
 	}
 
 	&.big {

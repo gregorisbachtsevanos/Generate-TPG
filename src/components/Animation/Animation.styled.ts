@@ -38,10 +38,10 @@ export const StyledAnimationContainer = styled.div`
 		transform: translateX(-50%);
 		width: 90%;
 		height: 8px;
-		background: ${({ theme }) => theme.palette.black};
+		background: ${({ theme }) => theme.palette.blue[4]};
 		border-radius: 50%;
-		filter: drop-shadow(0 0 2px ${({ theme }) => theme.palette.black})
-			drop-shadow(0 0 60px ${({ theme }) => theme.palette.black});
+		filter: drop-shadow(0 0 2px ${({ theme }) => theme.palette.blue[4]})
+			drop-shadow(0 0 60px ${({ theme }) => theme.palette.blue[4]});
 		animation: animate-line 4s ease-in-out infinite;
 	}
 

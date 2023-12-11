@@ -1,10 +1,10 @@
 import { Link, useSearchParams } from "react-router-dom";
 import Button from "../../components/Button";
 import Sidebar from "../../components/SideBar/Sidebar";
-import MainLayout from "../../layout/MainLayout/MainLayout";
 import { StyledChatContainer } from "./Chat.styled";
 import { useEffect, useMemo, useState } from "react";
 import Form from "../../components/Form";
+import PageLayout from "../../layout/PageLayout/PageLayout";
 
 const Chat = () => {
 	const [searchParams] = useSearchParams();
@@ -21,7 +21,7 @@ const Chat = () => {
 	const isVideoTabActive = useMemo(() => formType === "video", [formType]);
 
 	return (
-		<MainLayout withoutPadding>
+		<PageLayout>
 			<StyledChatContainer>
 				<Sidebar />
 				<div className="chat-body">
@@ -65,7 +65,7 @@ const Chat = () => {
 					)}
 				</div>
 			</StyledChatContainer>
-		</MainLayout>
+		</PageLayout>
 	);
 };
 

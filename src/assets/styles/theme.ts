@@ -13,24 +13,17 @@ export const defaultTheme: DefaultTheme = {
 		// },
 		// yellow: "#F9F871",
 
-		black: "#17191a",
-		white: "#CBCBCC",
-		yellow: {
-			1: "#FABF68",
-			2: "#F9B14F",
-			3: "#D8853A",
+		black: "#121416",
+		blue: {
+			1: "#020a18",
+			2: "#09111e",
+			3: "#3a68b8",
+			4: "#008afd",
 		},
-		// black: "#121416",
-		// blue: {
-		// 	1: "#020a18",
-		// 	2: "#09111e",
-		// 	3: "#3a68b8",
-		// 	4: "#008afd",
-		// },
-		// white: "#f1f6ff",
-		// success: "#49bc92",
-		// error: "#cc4848",
-		// yellow: "#d7ef41",
+		white: "#CBCBCC",
+		success: "#49bc92",
+		error: "#cc4848",
+		yellow: "#d7ef41",
 	},
 };
 
