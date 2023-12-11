@@ -10,6 +10,6 @@ export const StyledNavbarContainer = styled.nav`
 	z-index: 1;
 
 	div {
-		color: ${({ theme }) => theme.palette.blue[3]};
+		color: ${({ theme }) => theme.palette.black};
 	}
 `;

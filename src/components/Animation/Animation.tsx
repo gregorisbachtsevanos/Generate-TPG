@@ -1,4 +1,3 @@
-import React from "react";
 import { StyledAnimationContainer } from "./Animation.styled";
 
 const Animation = () => {
