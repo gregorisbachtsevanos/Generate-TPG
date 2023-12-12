@@ -1,17 +1,16 @@
-import React, {
+import {
+	AnchorHTMLAttributes,
+	ButtonHTMLAttributes,
 	FC,
 	ReactNode,
-	ButtonHTMLAttributes,
-	AnchorHTMLAttributes,
 } from "react";
 
+import { Link, LinkProps } from "react-router-dom";
 import {
 	StyledButtonContainer,
 	StyledButtonLinkContainer,
 	StyledButtonTabContainer,
 } from "./Button.styled";
-import { LinkProps } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 type BaseProps = {
 	children: ReactNode | ReactNode[];

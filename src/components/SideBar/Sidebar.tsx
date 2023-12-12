@@ -1,7 +1,6 @@
-import React from "react";
-import { StyledSidebarContainer } from "./Sidebar.styled";
-import Button from "../Button";
 import { TitleLg } from "../../assets/styles/theme";
+import Button from "../Button";
+import { StyledSidebarContainer } from "./Sidebar.styled";
 
 const Sidebar = () => {
 	return (
