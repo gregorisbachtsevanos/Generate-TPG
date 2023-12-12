@@ -5,7 +5,7 @@ export const StyledMainLayout = styled.main`
 	height: 100vh;
 	padding: 0 2rem;
 	overflow: hidden;
-	background: url("/public/ai-wave.webp") no-repeat;
+	background: url("/ai-wave.webp") no-repeat;
 	background-size: cover;
 
 	&.noPadding {
