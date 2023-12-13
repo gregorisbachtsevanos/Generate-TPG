@@ -5,7 +5,7 @@ export const StyledFormContainer = styled.div`
 	flex-direction: column;
 	align-items: center;
 	min-height: 60vh;
-	gap: 25rem;
+	gap: 7rem;
 	justify-content: flex-end;
 
 	form {

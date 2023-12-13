@@ -12,14 +12,14 @@ const port = 3001;
 app.use(cors());
 
 app.get("/image-generator", async (req, res) => {
-	const { query } = req
+	const { prompt } = req.query
 
 	// return console.log(query.prompt)
 	const response = await replicate.run(
 		"stability-ai/stable-diffusion:ac732df83cea7fff18b8472768c88ad041fa750ff7682a21affe81863cbe77e4",
 		{
 			input: {
-				prompt: query.prompt,
+				prompt
 			},
 		}
 	);
@@ -27,12 +27,13 @@ app.get("/image-generator", async (req, res) => {
 });
 
 app.get("/video-generator", async (req, res) => {
-	const { query } = req
+	const { prompt } = req.query
+
 	const response = await replicate.run(
 		"anotherjesse/zeroscope-v2-xl:9f747673945c62801b13b84701c783929c0ee784e4748ec062204894dda1a351",
 		{
 			input: {
-				prompt: query.prompt,
+				prompt
 			},
 		}
 	);
