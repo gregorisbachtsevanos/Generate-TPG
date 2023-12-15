@@ -9,6 +9,7 @@ const replicate = new Replicate({
 
 const app = express();
 const port = 3001;
+
 app.use(cors());
 
 app.get("/image-generator", async (req, res) => {
