@@ -1,6 +1,5 @@
 import cors from 'cors';
 import express from "express";
-
 import Replicate from "replicate";
 
 const replicate = new Replicate({
