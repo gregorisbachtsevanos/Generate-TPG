@@ -1,10 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import { routes } from "./routes/routes";
-import PublicRoutes from "./routes/PublicRoutes";
-import Landing from "./features/Landing/Landing";
 import Chat from "./features/Chat/Chat";
+import Landing from "./features/Landing/Landing";
 import Register from "./features/Register/Register";
 import PrivateRoutes from "./routes/PrivateRoutes";
+import PublicRoutes from "./routes/PublicRoutes";
+import { routes } from "./routes/routes";
+
 import "./assets/styles/global.css";
 
 function App() {
