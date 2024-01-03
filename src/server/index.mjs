@@ -22,6 +22,7 @@ app.get("/image-generator", async (req, res) => {
 			},
 		}
 	);
+
 	res.send({ message: "Image generator", response });
 });
 
@@ -36,6 +37,7 @@ app.get("/video-generator", async (req, res) => {
 			},
 		}
 	);
+
 	res.send({ message: "Video generator", response });
 });
 
