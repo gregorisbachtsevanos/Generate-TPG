@@ -1,19 +1,19 @@
 # Generate-TPG
 ### Welcome to the AI Image and Video Generator! This application uses AI to generate images or videos based on user's prompts. It is built using React and Vite for a fast and efficient development experience.
 
-Table of Contents
-Features
-Installation
-Usage
-Technologies Used
-Contributing
-License
-Features
-Generate images based on user prompts using AI.
-Generate videos based on user prompts using AI.
-Responsive and user-friendly interface.
-Fast development and build process with Vite.
-Built with React for a modular and maintainable codebase.
+Table of Contents\
+Features\
+Installation\
+Usage\
+Technologies Used\
+Contributing\
+License\
+Features\
+Generate images based on user prompts using AI.\
+Generate videos based on user prompts using AI.\
+Responsive and user-friendly interface.\
+Fast development and build process with Vite.\
+Built with React for a modular and maintainable codebase.\
 Installation
 Prerequisites
 Before you begin, ensure you have the following installed:
