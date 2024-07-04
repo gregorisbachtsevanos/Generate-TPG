@@ -1,4 +1,4 @@
-# BreadcrumbsGenerate-TPG
+# Generate-TPG
 ### Welcome to the AI Image and Video Generator! This application uses AI to generate images or videos based on user's prompts. It is built using React and Vite for a fast and efficient development experience.
 
 Table of Contents
@@ -24,7 +24,6 @@ Getting Started
 Clone the repository:
 
 ```
-git clone https://github.com/yourusername/ai-image-video-generator.git
 cd ai-image-video-generator
 ```
 Install dependencies:
